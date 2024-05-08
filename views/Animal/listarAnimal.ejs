@@ -1,0 +1,84 @@
+<!-- listarAnimais.ejs -->
+<h1><strong>Animais</strong></h1>
+<a class="btn btn-secondary" style="max-width: 200px;" href="/cadastrar">Novo Animal</a>
+
+<hr>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Espécie</th>
+                <th>Raça</th>
+                <th>Sexo</th>
+                <th>Peso</th>
+                <th>Data de Admissão</th>
+                <th>Status de Doação</th>
+                <th>Descrição</th>
+                <th>Responsável Atual</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% animais.forEach(animal=> { %>
+                <tr>
+                    <td>
+                        <%= animal.animNome %>
+                    </td>
+                    <td>
+                        <%= animal.animEspecie %>
+                    </td>
+                    <td>
+                        <%= animal.animRaca %>
+                    </td>
+                    <td>
+                        <%= animal.animSexo %>
+                    </td>
+                    <td>
+                        <%= animal.animPeso %>
+                    </td>
+                    <td>
+                        <%= animal.animDataAdmissao %>
+                    </td>
+                    <td>
+                        <%= animal.animstatusDoacao %>
+                    </td>
+                    <td>
+                        <%= animal.animDescricao %>
+                    </td>
+                    <td>
+                        <%= animal.animResponsavelAtual %>
+                    </td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Ações">
+                            <a href="/animais/<%= animal.animId %>/editar" class="btn btn-edit btn-primary btn-sm bt-css"><i class="fas fa-pen"></i></a>
+                            <button type="button" class="btn btn-danger btnExclusao btn-sm" data-toggle="modal" data-target="#confirmarExclusao<%= animal.animId %>"><i class="fas fa-trash"></i></button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="confirmarExclusao<%= animal.animId %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Confirmar exclusão de animal</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Tem certeza que deseja excluir <%= animal.animNome %>?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            <form action="/animais/<%= animal.animId %>?_method=DELETE" method="POST">
+                                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+</div>

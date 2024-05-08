@@ -1,0 +1,112 @@
+<!--editarEmpresaParceira.ejs-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Empresa Parceira</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .btn-primary {
+            color: black;
+            background-color: #f5b942;
+            border-color: #f5b942;
+        }
+    </style>
+</head>
+
+<div class="card card-warning">
+    <div class="card-header">
+        <h3 class="card-title"><strong>Editar Empresa Parceira</strong></h3>
+    </div>
+
+    <div class="card-body">
+        <form action="/empresas-parceiras/<%= empresa.empId %>" method="POST" class="needs-validation" novalidate>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Nome:</label>
+                        <input type="text" class="form-control" id="empNome" name="empNome" placeholder="Nome" value="<%= empresa.empNome %>" required>
+                        <div class="invalid-feedback">Por favor, insira o nome da empresa.</div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>CNPJ:</label>
+                        <input type="text" class="form-control" id="empCnpj" name="empCnpj" placeholder="CNPJ" value="<%= empresa.empCnpj %>" maxlength="18" required>
+                        <div class="invalid-feedback">Por favor, insira o CNPJ da empresa.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" class="form-control" id="empEmail" name="empEmail" placeholder="Email" value="<%= empresa.empEmail %>" required>
+                        <div class="invalid-feedback">Por favor, insira um email válido.</div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Responsável:</label>
+                        <input type="text" class="form-control" id="empResponsavel" name="empResponsavel" placeholder="Responsável" value="<%= empresa.empResponsavel %>" required>
+                        <div class="invalid-feedback">Por favor, insira o nome do responsável.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Telefone:</label>
+                <input type="tel" class="form-control" id="empTelefone" name="empTelefone" placeholder="Telefone" value="<%= empresa.empTelefone %>" maxlength="14" required>
+                <div class="invalid-feedback">Por favor, insira um número de telefone válido.</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Formatar CNPJ
+    document.getElementById('empCnpj').addEventListener('input', function (e) {
+        var value = e.target.value.replace(/\D/g, '');
+        if (value.length > 2) {
+            value = value.substring(0, 2) + '.' + value.substring(2);
+        }
+        if (value.length > 6) {
+            value = value.substring(0, 6) + '.' + value.substring(6);
+        }
+        if (value.length > 10) {
+            value = value.substring(0, 10) + '/' + value.substring(10);
+        }
+        if (value.length > 15) {
+            value = value.substring(0, 15) + '-' + value.substring(15);
+        }
+        e.target.value = value;
+    });
+
+    // Restringir entrada de texto em campos de número
+    var numberInputs = document.querySelectorAll('input[type="tel"]');
+    numberInputs.forEach(function (input) {
+        input.addEventListener('input', function (e) {
+            this.value = this.value.replace(/\D/g, '');
+        });
+    });
+
+    // Validar o formulário
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

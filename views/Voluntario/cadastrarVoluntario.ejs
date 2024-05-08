@@ -1,0 +1,55 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Voluntário</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .btn-primary {
+            background-color: #f5b942;
+            border-color: #f5b942;
+        }
+    </style>
+</head>
+<div class="container">
+    <h1 class="mt-5 mb-4">Cadastro de Voluntários</h1>
+    <form action="/voluntarios/cadastrar" method="POST" class="needs-validation" novalidate>
+
+
+        <div class="form-group">
+            <label for="voluDisponibilidade">Disponibilidade Mensal (Horas):</label>
+            <input type="number" class="form-control" id="voluDisponibilidade" name="voluDisponibilidade" placeholder="Disponibilidade" required>
+            <div class="invalid-feedback">Por favor, insira a disponibilidade do voluntário.</div>
+        </div>
+        <div class="form-group">
+            <label for="voluHabilidades">Habilidades:</label>
+            <input type="text" class="form-control" id="voluHabilidades" name="voluHabilidades" placeholder="Habilidades" required>
+        </div>
+        <div class="form-group">
+            <label for="voluPrefeAtuacao">Preferência de Atuação:</label>
+            <input type="text" class="form-control" id="voluPrefeAtuacao" name="voluPrefeAtuacao" placeholder="Preferência de Atuação" required>
+        </div>
+        <div class="form-group">
+            <label for="Pessoa_id">ID da Pessoa:</label>
+            <input type="number" class="form-control" id="Pessoa_id" name="Pessoa_id" placeholder="ID da Pessoa" required>
+            <div class="invalid-feedback">Por favor, insira o ID da pessoa.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

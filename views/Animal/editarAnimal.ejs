@@ -1,0 +1,97 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Animal</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .btn-primary {
+            color: black;
+            background-color: #f5b942;
+            border-color: #f5b942;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card card-warning">
+            <div class="card-header">
+                <h1 class="card-title"><strong>Editar Animal</strong></h1>
+            </div>
+            <div class="card-body">
+                <form action="/animais/<%= animal.animId %>" method="POST" class="needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nome:</label>
+                                <input type="text" class="form-control" id="animNome" name="animNome" placeholder="Nome" value="<%= animal.animNome %>" required>
+                                <div class="invalid-feedback">Por favor, insira o nome do animal.</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Espécie:</label>
+                                <input type="text" class="form-control" id="animEspecie" name="animEspecie" placeholder="Espécie" value="<%= animal.animEspecie %>" required>
+                                <div class="invalid-feedback">Por favor, insira a espécie do animal.</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Raça:</label>
+                                <input type="text" class="form-control" id="animRaca" name="animRaca" placeholder="Raça" value="<%= animal.animRaca %>" required>
+                                <div class="invalid-feedback">Por favor, insira a raça do animal.</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Sexo:</label>
+                                <input type="text" class="form-control" id="animSexo" name="animSexo" placeholder="Sexo" value="<%= animal.animSexo %>" required>
+                                <div class="invalid-feedback">Por favor, insira o sexo do animal.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Peso:</label>
+                                <input type="text" class="form-control" id="animPeso" name="animPeso" placeholder="Peso" value="<%= animal.animPeso %>" pattern="[0-9]+([,.][0-9]+)?" required>
+                                <div class="invalid-feedback">Por favor, insira o peso do animal (apenas números).</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Data de Admissão:</label>
+                                <input type="date" class="form-control" id="animDataAdmissao" name="animDataAdmissao" placeholder="Data de Admissão" value="<%= animal.animDataAdmissao.toISOString().substring(0, 10) %>" required>
+                                <div class="invalid-feedback">Por favor, insira a data de admissão do animal.</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Status de Doação:</label>
+                                <input type="text" class="form-control" id="animstatusDoacao" name="animstatusDoacao" placeholder="Status de Doação" value="<%= animal.animstatusDoacao %>" pattern="[0-9]*" required>
+                                <div class="invalid-feedback">Por favor, insira o status de doação do animal (apenas números).</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Descrição:</label>
+                                <input type="text" class="form-control" id="animDescricao" name="animDescricao" placeholder="Descrição" value="<%= animal.animDescricao %>" required>
+                                <div class="invalid-feedback">Por favor, insira a descrição do animal.</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Responsável Atual:</label>
+                                <input type="text" class="form-control" id="animResponsavelAtual" name="animResponsavelAtual" placeholder="Responsável Atual" value="<%= animal.animResponsavelAtual %>" required>
+                                <div class="invalid-feedback">Por favor, insira o responsável atual do animal.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>

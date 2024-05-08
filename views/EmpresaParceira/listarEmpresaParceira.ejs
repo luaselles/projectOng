@@ -1,0 +1,63 @@
+<h1><strong>Empresas Parceiras</strong></h1>
+<a class="btn btn-secondary" style="max-width: 200px;" href="/empresas-parceiras/cadastrar">Nova Empresa Parceira</a>
+
+<hr>
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Nome</th>
+            <th>CNPJ</th>
+            <th>Email</th>
+            <th>Responsável</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+        </tr>
+        <% empresas.forEach(empresa=> { %>
+            <tr>
+                <td>
+                    <%= empresa.empNome %>
+                </td>
+                <td>
+                    <%= empresa.empCnpj %>
+                </td>
+                <td>
+                    <%= empresa.empEmail %>
+                </td>
+                <td>
+                    <%= empresa.empResponsavel %>
+                </td>
+                <td>
+                    <%= empresa.empTelefone %>
+                </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Ações">
+                        <a href="/empresas-parceiras/<%= empresa.empId %>/editar" class="btn btn-edit btn-primary btn-sm bt-css"><i class="fas fa-pen"></i></a>
+                        <button type="button" class="btn btn-danger btnExclusao btn-sm" data-toggle="modal" data-target="#confirmarExclusao<%= empresa.empId %>"><i class="fas fa-trash"></i></button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="confirmarExclusao<%= empresa.empId %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirmar exclusão de empresa parceira</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Tem certeza que deseja excluir <%= empresa.empNome %>?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <form action="/empresas-parceiras/<%= empresa.empId %>?_method=DELETE" method="POST">
+                                            <button type="submit" class="btn btn-danger">Excluir</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <% }); %>
+    </table>
+</div>
