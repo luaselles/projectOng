@@ -1,0 +1,61 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Saída de Evento</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .btn-primary {
+            background-color: #f5b942;
+            border-color: #f5b942;
+        }
+    </style>
+</head>
+
+<div class="container">
+    <h1 class="mt-5 mb-4">Cadastro de Saída de Evento</h1>
+    <form action="/saidas-eventos" method="POST" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="empresaParceiraId">Empresa Parceira:</label>
+            <input type="text" class="form-control" id="empresaParceiraId" name="empresaParceiraId" placeholder="ID da Empresa Parceira" required>
+            <div class="invalid-feedback">Por favor, insira o ID da empresa parceira.</div>
+        </div>
+        <div class="form-group">
+            <label for="voluntarios">Voluntários:</label>
+            <input type="text" class="form-control" id="voluntarios" name="voluntarios" placeholder="Voluntários" required>
+            <div class="invalid-feedback">Por favor, insira os voluntários.</div>
+        </div>
+        <div class="form-group">
+            <label for="animais">Animais:</label>
+            <input type="text" class="form-control" id="animais" name="animais" placeholder="Animais" required>
+            <div class="invalid-feedback">Por favor, insira os animais.</div>
+        </div>
+        <div class="form-group">
+            <label for="produtos">Produtos:</label>
+            <input type="text" class="form-control" id="produtos" name="produtos" placeholder="Produtos" required>
+            <div class="invalid-feedback">Por favor, insira os produtos.</div>
+        </div>
+        <div class="form-group">
+            <label for="patrimonioQtd">Patrimônio QTD:</label>
+            <input type="number" class="form-control" id="patrimonioQtd" name="patrimonioQtd" placeholder="Quantidade de Patrimônio" required>
+            <div class="invalid-feedback">Por favor, insira a quantidade de patrimônio.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

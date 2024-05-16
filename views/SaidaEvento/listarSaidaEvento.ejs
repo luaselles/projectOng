@@ -1,0 +1,63 @@
+<h1><strong>Saídas de Eventos</strong></h1>
+<a class="btn btn-secondary" style="max-width: 200px;" href="/saidas-eventos/cadastrar">Nova Saída de Evento</a>
+
+<hr>
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Empresa Parceira</th>
+            <th>Voluntários</th>
+            <th>Animais</th>
+            <th>Produtos</th>
+            <th>Patrimônio QTD</th>
+            <th>Ações</th>
+        </tr>
+        <% saidas.forEach(saida => { %>
+            <tr>
+                <td>
+                    <%= saida.empresaParceiraId %>
+                </td>
+                <td>
+                    <%= saida.voluntarios %>
+                </td>
+                <td>
+                    <%= saida.animais %>
+                </td>
+                <td>
+                    <%= saida.produtos %>
+                </td>
+                <td>
+                    <%= saida.patrimonioQtd %>
+                </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Ações">
+                        <a href="/saidas-eventos/<%= saida.saidaId %>/editar" class="btn btn-edit btn-primary btn-sm bt-css"><i class="fas fa-pen"></i></a>
+                        <button type="button" class="btn btn-danger btnExclusao btn-sm" data-toggle="modal" data-target="#confirmarExclusao<%= saida.saidaId %>"><i class="fas fa-trash"></i></button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="confirmarExclusao<%= saida.saidaId %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirmar exclusão de saída de evento</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Tem certeza que deseja excluir esta saída de evento?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <form action="/saidas-eventos/<%= saida.saidaId %>?_method=DELETE" method="POST">
+                                            <button type="submit" class="btn btn-danger">Excluir</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        <% }); %>
+    </table>
+</div>
